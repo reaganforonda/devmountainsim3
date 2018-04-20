@@ -31,8 +31,10 @@ module.exports = {
         const dbInstance = req.app.get('db');
         const {userId} = req.params;
         const {userposts, search} = req.query;
+        console.log(userposts);
+        console.log(search);
 
-        if(userposts && search !== ''){
+        if(userposts && (search || search !== '')){
             dbInstance.GET_USER_POST_SEARCH([userId, search]).then((post) => {
                 res.status(200).send(post[0]);
                 console.log('Hit GET_USER_POST_SEARCH' + (post));
@@ -40,7 +42,7 @@ module.exports = {
                 console.log(e);
                 res.sendStatus(500);
             })
-        } else if (!userposts && search === ''){
+        } else if (!userposts && (!search ||search === '')){
             dbInstance.GET_POSTS_NOSEARCH([userId]).then((posts) => {
                 res.status(200).send(posts);
                 console.log('Hit GET_POSTS_NOSEARCH');
@@ -48,7 +50,7 @@ module.exports = {
                 console.log(e);
                 res.sendStatus(500);
             })
-        } else if(!userposts && search){
+        } else if(!userposts && (search || search !== '')){
             dbInstance.GET_POSTS_SEARCH([userId, search]).then((posts) => {
                 res.status(200).send(posts);
                 console.log(posts);
@@ -57,7 +59,7 @@ module.exports = {
                 console.log(e);
                 res.sendStatus(500);
             })
-        } else if (userposts && search === ''){
+        } else if (userposts && (!search || search === '')){
             dbInstance.GET_ALL_POSTS().then((posts) => {
                 res.status(200).send(posts);
                 console.log('HIT GET_ALL_POSTS')

@@ -26,7 +26,11 @@ export class Dashboard extends Component{
 
     handleSearch(){
         let userId = this.props.userid;
-        axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`)
+        axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
+            this.setState({posts : result.data});
+        }).catch((e) => {
+            console.log(e);
+        })
     }
 
     render(){
