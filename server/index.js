@@ -48,3 +48,10 @@ massive(CONNECTION_STRING)
 app.listen(CONNECTION_PORT, () => {
   console.log(`Creeping on Port: ${CONNECTION_PORT}`);
 });
+
+
+// ######################
+// ###### Endpoints ######
+// ######################
+app.post('/api/register', controller.addUser);
+app.post('/api/login', controller.login);

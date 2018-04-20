@@ -8,15 +8,21 @@ import Dashboard from './Component/Dashboard/Dashboard';
 import Form from './Component/Form/Form';
 import Post from './Component/Post/Post';
 
+import Routing from './route';
+
 class App extends Component {
+
+  constructor(props){
+    super(props);
+
+  }
+
   render() {
-    return (
+    const pathname = window.location.pathname
+        return (
       <div className="App">
       <Nav/>
-      <Auth/>
-      <Dashboard/>
-      <Form/>
-      <Post/>
+      <Routing/>
       </div>
     );
   }
