@@ -24,6 +24,10 @@ const {
 app.use(bodyParser.json());
 app.use(cors());
 
+
+// SERVER STATIC FILES
+app.use(express.static(__dirname + '../../build'));
+
 // ######################
 // ###### SESSIONS ######
 // ######################
@@ -45,13 +49,19 @@ massive(CONNECTION_STRING)
   })
   .catch(e => console.log(`Error: ${e}`));
 
-app.listen(CONNECTION_PORT, () => {
-  console.log(`Creeping on Port: ${CONNECTION_PORT}`);
-});
-
-
 // ######################
 // ###### Endpoints ######
 // ######################
 app.post('/api/register', controller.addUser);
 app.post('/api/login', controller.login);
+app.get('/api/posts/:userId');
+
+
+
+
+
+app.listen(CONNECTION_PORT, () => {
+  console.log(`Creeping on Port: ${CONNECTION_PORT}`);
+});
+
+

@@ -21,10 +21,7 @@ class App extends Component {
 
   render() {
     const pathname = window.location.href;
-
-    console.log(pathname);
-    console.log(pathname === 'http://localhost:3000/#/')
-        return (
+          return (
       <div className="App">
       {
         this.pathname === 'http://localhost:3000/#/' ? null : <Nav/>
