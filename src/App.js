@@ -10,6 +10,8 @@ import Post from './Component/Post/Post';
 
 import Routing from './route';
 
+import {withRouter} from 'react-router-dom';
+
 class App extends Component {
 
   constructor(props){
