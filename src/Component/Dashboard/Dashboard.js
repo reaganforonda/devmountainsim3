@@ -14,6 +14,12 @@ export class Dashboard extends Component{
 
         this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+    }
+
+
+    componentDidMount(){
+        this.handleSearch();
     }
 
     handleSearchInput(e){
@@ -26,6 +32,17 @@ export class Dashboard extends Component{
 
     handleSearch(){
         let userId = this.props.userid;
+        axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
+            this.setState({posts : result.data});
+        }).catch((e) => {
+            console.log(e);
+        })
+    }
+
+    handleReset(){
+        let userId = this.props.userid;
+        this.setState({searchInput : ''});
+        this.setState({checkbox : true});
         axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
             this.setState({posts : result.data});
         }).catch((e) => {

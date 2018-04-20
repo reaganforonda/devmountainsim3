@@ -20,11 +20,11 @@ class App extends Component {
   }
 
   render() {
-    const pathname = window.location.href;
+    
           return (
       <div className="App">
       {
-        this.pathname === 'http://localhost:3000/#/' ? null : <Nav/>
+        this.props.location.pathname === '/' ? null : <Nav/>
       }
       
       <Routing/>
@@ -33,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
