@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import axios from 'axios';
 
-
-export default class Dashboard extends Component{
+export class Dashboard extends Component{
     constructor(props){
         super(props);
 
@@ -15,8 +16,6 @@ export default class Dashboard extends Component{
         this.handleCheckBox = this.handleCheckBox.bind(this);
     }
 
-
-
     handleSearchInput(e){
         this.setState({[e.target.name] : e.target.value});
     }
@@ -25,8 +24,10 @@ export default class Dashboard extends Component{
         this.state.checkbox ? this.setState({checkbox : false}) : this.setState({checkbox : true});
     }
 
-    
-
+    handleSearch(){
+        let userId = this.props.userid;
+        axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`)
+    }
 
     render(){
 
@@ -51,3 +52,11 @@ export default class Dashboard extends Component{
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+        userid : state.id
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard);
