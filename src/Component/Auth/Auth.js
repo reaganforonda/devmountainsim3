@@ -47,7 +47,6 @@ export class Auth extends Component {
     axios
       .post("http://localhost:4000/api/login", user)
       .then(result => {
-        console.log(result.data)
         this.props.update(result.data.id, result.data.username, result.data.profile_pic);
       })
       .catch(e => console.log(e));

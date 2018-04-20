@@ -37,7 +37,7 @@ module.exports = {
         if(userposts && (search || search !== '')){
             dbInstance.GET_USER_POST_SEARCH([userId, search]).then((post) => {
                 res.status(200).send(post[0]);
-                console.log('Hit GET_USER_POST_SEARCH' + (post));
+                console.log('Hit GET_USER_POST_SEARCH');
             }).catch((e)=> {
                 console.log(e);
                 res.sendStatus(500);
@@ -68,5 +68,17 @@ module.exports = {
                 res.sendStatus(500);
             })
         }
+    },
+
+    getSinglePost : (req, res) => {
+        const dbInstance = req.app.get('db');
+        const {postId} = req.params;
+
+        dbInstance.GET_SINGLE_POST([postId]).then((result) => {
+            res.status(200).send(post[0]);
+        }).catch((e) => {
+            console.log(e);
+            res.sendStatus(500);
+        })
     }
 }

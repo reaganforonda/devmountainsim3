@@ -55,6 +55,8 @@ massive(CONNECTION_STRING)
 app.post('/api/register', controller.addUser);
 app.post('/api/login', controller.login);
 app.get('/api/posts/:userId', controller.getPost);
+app.get('/api/post/:postId'), controller.getSinglePost;
+
 
 
 app.listen(CONNECTION_PORT, () => {

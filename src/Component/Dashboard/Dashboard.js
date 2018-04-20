@@ -32,7 +32,7 @@ export class Dashboard extends Component{
 
     handleSearch(){
         let userId = this.props.userid;
-        axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
+        axios.get(`http://localhost/4000/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
             this.setState({posts : result.data});
         }).catch((e) => {
             console.log(e);
@@ -41,9 +41,9 @@ export class Dashboard extends Component{
 
     handleReset(){
         let userId = this.props.userid;
+        console.log(userId);
         this.setState({searchInput : ''});
-        this.setState({checkbox : true});
-        axios.get(`/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
+        axios.get(`http://localhost:4000/api/posts/${userId}?userposts=${this.state.checkbox}&search=${this.state.searchInput}`).then((result) => {
             this.setState({posts : result.data});
         }).catch((e) => {
             console.log(e);
@@ -67,7 +67,7 @@ export class Dashboard extends Component{
                 <input name='searchInput' onChange={(e)=>this.handleSearchInput(e)} placeholder='Search by Title'/>
                 <button>Search</button>
                 <button>Reset</button>
-                My Post <input type='checkbox' onClick={()=>this.handleCheckBox()} checked={this.state.checkbox}/>
+                My Post <input type='checkbox' onChange={()=>this.handleCheckBox()} checked={this.state.checkbox}/>
                 
             </div>
         )
