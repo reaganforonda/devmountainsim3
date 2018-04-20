@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
 
-export default class Auth extends Component {
+import {update} from '../../ducks/reducer';
+
+export class Auth extends Component {
   constructor(props) {
     super(props);
 
@@ -29,7 +32,8 @@ export default class Auth extends Component {
     axios
       .post("http://localhost:4000/api/register", user)
       .then(result => {
-        console.log(result.data);
+        console.log(result.data)
+        this.props.update(result.data.id, result.data.username, result.data.profile_pic);
       })
       .catch(e => console.log(e));
   }
@@ -43,7 +47,7 @@ export default class Auth extends Component {
     axios
       .post("http://localhost:4000/api/login", user)
       .then(result => {
-        console.log(result.data);
+        
       })
       .catch(e => console.log(e));
   }
@@ -91,3 +95,5 @@ export default class Auth extends Component {
     );
   }
 }
+
+export default connect(null, {update})(Auth);

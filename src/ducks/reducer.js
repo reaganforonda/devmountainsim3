@@ -1,29 +1,33 @@
 const initialState = {
-    username : 'sdfsd',
-    id : '',
-    img : 'http://www.fillmurray.com/100/100'
+  username: "",
+  id: "",
+  img: ""
+};
+
+// ####################
+// ### Action Types ###
+// ####################
+const UPDATE = "UPDATE";
+
+// ######################
+// ### Action Builder ###
+// ######################
+export function update(id, username, img) {
+  return {
+    type: UPDATE,
+    payload: {
+      id: id,
+      username: username,
+      img: img
+    }
+  };
 }
 
-// ####################
-// ### Action Types ###
-// ####################
-
-
-// ####################
-// ### Action Types ###
-// ####################
-
-
-
-export default function reducer(state = initialState, action){
-    // switch(action.type){
-    //     /*
-    //      * INSERT casees
-    //      * 
-    //     */
-    //     default:
-    //     return state;
-    // }
-
-    return state;
-};
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case UPDATE:
+      return Object.assign({}, state, action.payload);
+    default:
+      return state;
+  }
+}

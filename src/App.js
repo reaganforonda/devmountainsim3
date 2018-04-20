@@ -18,10 +18,16 @@ class App extends Component {
   }
 
   render() {
-    const pathname = window.location.pathname
+    const pathname = window.location.href;
+
+    console.log(pathname);
+    console.log(pathname === 'http://localhost:3000/#/')
         return (
       <div className="App">
-      <Nav/>
+      {
+        this.pathname === 'http://localhost:3000/#/' ? null : <Nav/>
+      }
+      
       <Routing/>
       </div>
     );

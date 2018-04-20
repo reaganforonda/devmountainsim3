@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 export class Nav extends React.Component{
     render(){
-        console.log(this.props);
+        
         const {username, img} = this.props;
         return (
             <div>

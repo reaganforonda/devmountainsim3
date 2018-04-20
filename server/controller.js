@@ -7,7 +7,7 @@ module.exports = {
         const {username, password} = req.body;
 
         dbInstance. ADD_USER([username, password]).then((result) => {
-            res.status(200).send(result);
+            res.status(200).send(result[0]);
         }).catch((e) => {
             console.log(e);
             res.sendStatus(500);
